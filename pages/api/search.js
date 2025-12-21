@@ -22,11 +22,13 @@ export default async function handler(req, res) {
 
         const Cards = data.data.map(card => {
             const priceInfo = card.tcgplayer?.prices;
-            const marketPrice = Object.values(priceInfo || {})[0]?.market ?? "N/A";
+            const marketPrice = priceInfo 
+              ? (Object.values(priceInfo)[0]?.market ?? "N/A") 
+              : "N/A";
         
             return {
                 name: card.name,
-                img: card.images.small,
+                img: card.images.small || "",
                 price: marketPrice
             };
         });

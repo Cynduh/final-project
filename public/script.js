@@ -63,6 +63,31 @@ function updateDeck() {
     numCardsBadge.textContent = `${deck.length}/60 cards`;
 }
 
+async function removeFromDeck(index) {
+    const cardTodDelete = deck[index];
+    try {
+        const response = await fetch('/api/delete-card', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },  
+            body: JSON.stringify({ 
+                name: cardTodDelete.name, 
+                image_url: cardTodDelete.img,
+                market_price: cardTodDelete.price
+            }),
+        });
+        if (response.ok) {
+            deck.splice(index, 1);
+            updateDeck();
+        } else {
+            const errorData = await response.json();
+            alert("Failed to delete card: " + errorData.error);
+        }
+    } catch (err) {
+        console.error("Network error:", err);
+    }
+}
 function updateTotalPrice(total) {
 
     let totalElement = document.getElementById("deckTotalDisplay");
@@ -72,11 +97,6 @@ function updateTotalPrice(total) {
         document.getElementById("deck-view").appendChild(totalElement);
     }
     totalElement.innerHTML = `<h3>Total Deck Value: $${total.toFixed(2)}</h3>`;
-}
-
-function removeFromDeck(index) {
-    deck.splice(index, 1);
-    updateDeck();
 }
 
 function clearSearch() {
