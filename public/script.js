@@ -72,9 +72,7 @@ async function removeFromDeck(index) {
                 'Content-Type': 'application/json',
             },  
             body: JSON.stringify({ 
-                name: cardTodDelete.name, 
-                image_url: cardTodDelete.img,
-                market_price: cardTodDelete.price
+                id: cardTodDelete.id
             }),
         });
         if (response.ok) {
@@ -112,6 +110,7 @@ async function loadDeckFromDatabase() {
     if (response.ok) {
 
         deck = data.map(card => ({
+            id:card.id,
             name: card.name,
             img: card.image_url,
             price: card.market_price

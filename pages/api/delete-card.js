@@ -5,17 +5,13 @@ export default async function handler(req, res) {
         return res.status(405).json({ message: 'Method not allowed' });
     }
 
-    const { name } = req.body;
-    try {
+    const { id } = req.body;
         const { error } = await supabase
             .from('deck')
             .delete()
-            .eq('name', name);
+            .eq('id', id);
 
         if (error) throw error;
-
         return res.status(200).json({ message: 'Deleted successfully' });
-    } catch (error) {
-        return res.status(500).json({ error: error.message });
-    }
 }
+    
