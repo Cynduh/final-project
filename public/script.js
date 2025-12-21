@@ -10,14 +10,36 @@ const numCardsBadge = document.querySelector(".num-cards");
 
 let deck = [];
 
-function addToDeck(name, img, price) {
+async function addToDeck(name, img, price) {
     if (deck.length >= 60) {
         alert("Deck is full! (60/60)");
         return;
     }
-    const cardPrice = price === "N/A" ? 0 : parseFloat(price);
-    deck.push({ name, img, price: cardPrice });
-    updateDeck();
+    try {
+        const response = await fetch('/api/add-card', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 
+                name: name, 
+                image_url: img,
+                market_price: price
+            }),
+        });
+
+        if (response.ok) {
+            console.log("Card successfully saved to Supabase!");
+            const cardPrice = price === "N/A" ? 0 : parseFloat(price);
+            deck.push({ name, img, price: cardPrice });
+            updateDeck();   
+        } else {
+            const errorData = await response.json();
+            alert("Failed to save card: " + errorData.error);
+        }
+    } catch (err) {
+        console.error("Network error:", err);
+    }
 }
 
 function updateDeck() {
@@ -59,7 +81,6 @@ function removeFromDeck(index) {
 
 function clearSearch() {
     searchInput.value = '';
-    searchStatus.textContent = '';
 }
 
 
@@ -92,7 +113,7 @@ searchBtn.addEventListener("click", async () => {
     
     loader.classList.add("hidden");
     
-    if (!data.data || data.data.length === 0) {
+    if (!cards || cards.length === 0) {
         noResultsMsg.classList.remove("hidden");
         return;
     }
@@ -101,11 +122,12 @@ searchBtn.addEventListener("click", async () => {
         const cardHTML = `
             <div class="result-card">
                 <img src="${card.img}" alt="${card.name}" loading="lazy">
-                <p class="price">Price: ${card.price !== "N/A" ? `$${card.price.toFixed(2)}` : card.price}</p>
-                <button class="add-to-deck-btn" onclick="addToDeck('${card.name}', '${card.img}', '${card.price}')">Add to Deck</button>
+                <p class="name"><strong>${card.name}</strong></p>
+                <p class="price">Price: ${card.price !== "N/A" ? `$${card.price.toFixed(2)}` : "N/A"}</p>
+                <button class="add-btn" onclick="addToDeck('${card.name.replace(/'/g, "\\'")}', '${card.img}', '${card.price}')">Add to Deck</button>
             </div>
         `;
-        resultsDiv.insertAdjacentHTML("beforeend", cardHTML);
+        resultsDiv.insertAdjacentHTML('beforeend', cardHTML);
     });
 });
 
