@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>Home Page</title>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <script src="https://unpkg.com/lucide@latest"></script>
+    </head>
+    <body>
+        <header class="main header">
+            <h1>Pokémon TCG</h1>
+            <h2>Deck Builder</h2>
+            <h3>Build, customize, and perfect your competitive Pokémon Trading Card Game decks. Search thousands of cards,
+                 track your collection, and create winning strategies.</h3>
+        </header>
+        <div class="button">
+            <a href="deckBuilder.html" class="btn startbtn">
+                <i data-lucide="sparkles"></i>
+                Start Building
+            </a>
+        </div>
+        <div class="extraBtn">
+            <button class="backButtons" onclick="location.href='helpPage.html'">Help</button>
+            <button class="backButtons" onclick="location.href='aboutPage.html'">About</button>
+        </div>
+
+        <div class="features">
+
+            <div class="Cards hovPurple">
+                <div class="icon purple"><i data-lucide="target"></i></div>
+                <h3>Smart Deck Management</h3>
+                <p>Build perfect 60-card competitive decks with ease</p>
+            </div>
+
+            <div class="Cards hovPink">
+                <div class="icon pink"><i data-lucide="sparkles"></i></div>
+                <h3>See Pricing</h3>
+                <p>Save time by instantly viewing card prices</p>
+            </div>
+        </div>
+        <script>
+            lucide.createIcons();
+        </script>
+    </body>
+</html>

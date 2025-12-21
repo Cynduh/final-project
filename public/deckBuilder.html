@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title>Deck builder</title>    
+        <link rel="stylesheet" type="text/css" href="styles.css">
+    </head>
+    <body>
+        <header class="header">
+            <h1>POKÉMON TCG DECK BUILDER</h1>   
+            <p>Build Your Ultimate Deck</p>
+        </header>
+        <div class="extraBtn">
+            <button class="backButtons" onclick="location.href='helpPage.html'">Help</button>
+            <button class="backButtons" onclick="location.href='aboutPage.html'">About</button>
+        </div>
+
+        <div class="searchCard">
+            <h2>SEARCH CARDS</h2>
+            <input type="text" id="searchInput" placeholder="Search Pokémon name" required>
+            <button id="searchBtn">Search</button>
+            <button id="clearBtn">Clear</button>
+        </div>
+        <div class="result-container">
+            <div id="loader" class="loader hidden"></div> 
+            <div id="noResultsMsg" class="noResultsMsg">No cards found. Try searching for a Pokémon</div>
+            <div class="scroll-area">
+                <div class="results" id="results"></div>
+            </div>
+        </div>  
+
+        <div class="deck-view" id="deck-view">
+            <div class="deck-header">
+                <h2>MY DECK</h2>
+                <div class="deck-badges">
+                    <span class="badge num-cards">0/60 cards</span>
+                </div>
+            </div>
+            <div class="scroll-area">
+                <div id="deckContent" class="deck-content"></div>
+            </div>  
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
