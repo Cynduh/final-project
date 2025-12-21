@@ -1,0 +1,32 @@
+{
+  "name": "final-project",
+  "version": "1.0.0",
+  "description": "1. Pokemon Deck builder\r 2. The Pokemon Deck builder helps create a pokemon deck for a tournament by selecting and adding cards \r from a pokemon database to your deck. The website will allow for users to add and delete cards from their decks\r and they will be able to know how much their deck will cost after each addition of cards to the deck.\r 3. The target browser for this project is google chrome",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+  "dev": "next dev",
+  "build": "next build",
+  "start": "next start"
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cynduh/final-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Cynduh/final-project/issues"
+  },
+  "homepage": "https://github.com/Cynduh/final-project#readme",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.89.0",
+    "next": "^16.1.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
+  }
+}
