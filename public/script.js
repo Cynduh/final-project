@@ -72,7 +72,10 @@ async function removeFromDeck(index) {
                 'Content-Type': 'application/json',
             },  
             body: JSON.stringify({ 
-                id: cardTodDelete.id
+                id: cardTodDelete.id,
+                name: cardTodDelete.name,
+                image_url: cardTodDelete.img,
+                market_price: cardTodDelete.price
             }),
         });
         if (response.ok) {
