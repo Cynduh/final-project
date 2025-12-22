@@ -25,8 +25,7 @@ Create a .env.local file with the following keys<br>
 # To run it
 To run the application do:
 ```
-npm run build
-npm run start
+npm run dev
 ```
 Use the link http://localhost:3000/index.html to access the website
 # Testing: 
