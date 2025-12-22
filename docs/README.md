@@ -22,7 +22,6 @@ Create a .env.local file with the following keys<br>
 - NEXT_PUBLIC_SUPABASE_URL
 - NEXT_PUBLIC_SUPABASE_ANON_KEY
 - POKEMON_TCG_API_KEY
-<br>
 # To run it
 To run the application do:
 ```
